@@ -1,0 +1,35 @@
+==========HARDSHELL README==========
+
+I'M NOT RESPONSIBLE FOR ANY DAMAGE DONE USING THIS, USE THIS AT YOUR OWN RISK
+
+
+
+IT WOULD BE APPRECIATED IF YOU CREDIT MY GITHUB IF YOU PLAN TO USE MY SOURCE FOR PUBLIC USE
+
+thanks <3
+
+
+
+
+Welcome to HardShell!
+
+There's a few things I should mention before you continue:
+
+It's reccommended you run this in unrestricted mode in powershell:
+
+Set-ExecutionPolicy Unrestricted
+
+
+HardShell will create a HardShell folder into the temp folder in your main drive. 
+You can change the location of this at line 88
+
+
+Any line marked with "#<<" means that you can customize that output with the options given.
+Like for example: "#<< Enable/Disable"
+
+Any other line that you modify might break the code, so keep that in mind. I reccommend making a backup
+of HardShell
+
+
+
+Otherwise Enjoy!
