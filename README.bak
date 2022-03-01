@@ -3,7 +3,6 @@
 I'M NOT RESPONSIBLE FOR ANY DAMAGE DONE USING THIS, USE THIS AT YOUR OWN RISK
 
 
-
 IT WOULD BE APPRECIATED IF YOU CREDIT MY GITHUB IF YOU PLAN TO USE MY SOURCE FOR PUBLIC USE
 
 thanks <3
@@ -12,6 +11,13 @@ thanks <3
 
 
 Welcome to HardShell!
+
+HardShell is a basic powershell script that allows for easy access to security protocls, like passwords, firewalls, etc.
+
+This is mainly for you to setup certain security paramiters for deployment. But obviously I can't tell you what to do with it.
+
+
+
 
 There's a few things I should mention before you continue:
 
