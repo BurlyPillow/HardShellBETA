@@ -18,11 +18,13 @@ Set-ExecutionPolicy Unrestricted
 ipconfig /flushdns
 
 
+echo "For all optional prompts, 1 = yes, and 2 = no"
+
 
 Disable-LocalUser -Name "Guest" #<<
 
 echo "Guest Disabled"
-$Groupname = Read-host "Change the Admin and guest group names? yes = 1 / no = 2"
+$Groupname = Read-host "Change the Admin and guest group names?"
 
 if($Groupname -eq 1){
 
@@ -42,6 +44,11 @@ echo "Skipping name change"
 reg add “HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server” /v fDenyTSConnections /t REG_DWORD /d 1 /f
 
 echo "RPD Disabled"
+
+
+$TLS = Read-Host "Enable TLS?"
+
+if($TLS = 
 
 
 
@@ -107,7 +114,7 @@ echo "Opening up confirmation panel...."
 Clear-Content -Confirm C:\temp\HardShell\*.txt
 }
 
-$notes = Read-Host "Take PC notes? 1 = yes 2 = no"
+$notes = Read-Host "Take PC notes?"
 
 
 if ($notes -eq 1){
@@ -174,7 +181,7 @@ echo Anti-Virus Noted
 
 
 
-$quicksc = Read-Host "Initiate a quickscan? yes = 1 no = 2"
+$quicksc = Read-Host "Initiate a quickscan?"
 if ($quicksc -eq 1){
 
 Start-MpScan -ScanType QuickScan
@@ -187,7 +194,7 @@ echo "Skipping quickscan..."
 }
 
 
-$dsc = Read-Host "Install DSC? yes = 1 no = 2"
+$dsc = Read-Host "Install DSC?"
 
 if ($dsc -eq 1){
 
@@ -205,7 +212,7 @@ echo "Cancelling DSC..."
 
 
 
-$psswdP = Read-Host "Initiate Password Policies? yes = 1 no = 2"
+$psswdP = Read-Host "Initiate Password Policies?"
 
 if ($psswdP -eq 1) {
 
@@ -668,7 +675,7 @@ pause
 
 #Searches for media 
 
-$media = read-host "Scan for media? yes = 1 no = 2"
+$media = read-host "Scan for media?"
 
 if ($media -eq 1){
 echo "Finding unauthorized media files in C:\Users and/or C:\Documents and Settings..."
@@ -780,7 +787,7 @@ reg ADD HKCU\SYSTEM\CurrentControlSet\Services\CDROM /v AutoRun /t REG_DWORD /d 
 
 echo "Managed registry keys"
 }
-$rdpChk = Read-host "Enable remote desktop 1 = yes/2 = no"
+$rdpChk = Read-host "Enable remote desktop"
 if ($rdpChk -eq 1){
 	echo Enabling remote desktop...
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 1 /f
