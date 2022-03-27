@@ -173,6 +173,11 @@ chkdsk | Out-File 'C:\temp\HardShell\DSK.txt'
 echo "CHKDSK Noted"
 
 
+Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntiVirusProduct | Out-File -FilePath 'C:\temp\HardShell\AntiVirus.txt'
+
+echo Anti-Virus Noted
+
+
 
 netstat | Out-File -FilePath 'C:\temp\HardShell\NETSTAT.txt'
 
@@ -185,12 +190,6 @@ echo "NETSTAT Noted"
  echo "Skipping notes..."}
 
 
-
-
-
-Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntiVirusProduct | Out-File -FilePath 'C:\temp\HardShell\AntiVirus.txt'
-
-echo Anti-Virus Noted
 
 
 
