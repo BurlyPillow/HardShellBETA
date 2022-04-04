@@ -105,7 +105,7 @@ echo "Firewall logging enabled"
 }
 
 
-$FolderName = "C:\temp\HardShell"
+$FolderName = "C:\temp\HardShell" #<< Location where notes output
 if (Test-Path $FolderName) {
 Write-Host "HardFolder Already exists"
 }

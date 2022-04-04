@@ -27,7 +27,7 @@ Set-ExecutionPolicy Unrestricted
 
 
 -HardShell will create a HardShell folder into the temp folder in your main drive. 
-You can change the location of this at line 88
+You can change the location of this at line 108
 
 
 -Any line marked with "#<<" means that you can customize that output with the options given.
