@@ -797,8 +797,12 @@ reg ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v Show
 reg ADD HKLM\SYSTEM\CurrentControlSet\Control\CrashControl /v CrashDumpEnabled /t REG_DWORD /d 0 /f
 reg ADD HKCU\SYSTEM\CurrentControlSet\Services\CDROM /v AutoRun /t REG_DWORD /d 1 /f
 
-echo "Managed registry keys"
+
 }
+
+echo "Managed registry keys"
+
+
 $rdpChk = Read-host "Enable remote desktop"
 if ($rdpChk -eq 1){
 	echo Enabling remote desktop...
@@ -1405,5 +1409,6 @@ $btnInfo.Add_Click({
 Set-ExecutionPolicy Restricted{
 
 Write-Host "Hard Shell Completed"
+
 
 }

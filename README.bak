@@ -21,6 +21,9 @@ This is mainly for you to setup certain security paramiters for deployment. But 
 
 There's a few things I should mention before you continue:
 
+
+-ASR Rules are only available in a enterprise version of windows
+
 -It's reccommended you run this in unrestricted mode in powershell:
 
 Set-ExecutionPolicy Unrestricted
