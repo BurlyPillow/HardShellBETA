@@ -18,7 +18,7 @@ Set-ExecutionPolicy Unrestricted
 ipconfig /flushdns
 
 
-echo "For all optional prompts, 1 = yes, and 2 = no"
+echo "For most optional prompts, 1 = yes, and 2 = no"
 
 
 Disable-LocalUser -Name "Guest" #<<
@@ -937,6 +937,8 @@ reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v Enable
 }
 echo "Checking for network shares..."
 net share | Out-File -FilePath 'C:\temp\HardShell\Netshares.txt'
+
+echo "NOTE: ASR Rules only work for enterprise version of windows"
 
 $manual = Read-Host "(1 for Auto, 2 for Manual ASR configuration)"
 if (2 -eq $manual)
