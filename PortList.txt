@@ -1,0 +1,19 @@
+Available Port Numbers to block:
+
+7 -  Echo (TCP/UDP)
+
+19 - Chargen (TCP/UDP)
+
+20 - FTP (TCP)
+
+21 - FTP Control (TCP)
+
+22 - SSH (TCP)
+
+23 - Telnet (TCP)
+
+25 - SMTP (TCP)
+
+37 - Time (TCP/UDP)
+
+80 - HTTP (UDP)
