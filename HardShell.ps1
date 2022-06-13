@@ -269,7 +269,7 @@ configuration SecurityOption_Config
             # 2.3.1.2 (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'
             Accounts_Block_Microsoft_accounts = 'Users cant add or log on with Microsoft accounts' 
             # 2.3.1.3 (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled'
-            Accounts_Guest_account_status = 'Disabled'
+            Accounts_Guest_account_status = 'Disabled' #<<
             # 2.3.1.4 (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'
             Accounts_Limit_local_account_use_of_blank_passwords_to_console_logon_only = 'Enabled'
             # 2.3.1.5 (L1) Configure 'Accounts: Rename administrator account'
@@ -301,7 +301,7 @@ configuration SecurityOption_Config
             # 2.3.7.2 (L1) Ensure 'Interactive logon: Do not display last user name' is set to 'Enabled'
             Interactive_logon_Do_not_display_last_user_name = 'Enabled' #<< Enabled / Disabled
             # 2.3.7.3 (BL) Ensure 'Interactive logon: Machine account lockout threshold' is set to '10 or fewer invalid logon attempts, but not 0'
-            Interactive_logon_Machine_account_lockout_threshold = '10'            
+            Interactive_logon_Machine_account_lockout_threshold = '10'  #<< Insert value less than 10          
             # 2.3.7.4 (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'
             Interactive_logon_Machine_inactivity_limit = '900' 
             # 2.3.7.5 (L1) Configure 'Interactive logon: Message text for users attempting to log on' 
@@ -311,7 +311,7 @@ configuration SecurityOption_Config
             # 2.3.7.7 (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)'
             Interactive_logon_Number_of_previous_logons_to_cache_in_case_domain_controller_is_not_available = '4'
             # 2.3.7.8 (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'
-            Interactive_logon_Prompt_user_to_change_password_before_expiration = '14'
+            Interactive_logon_Prompt_user_to_change_password_before_expiration = '14' #<< set value 5 - 14
             # 2.3.7.9 (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher
             Interactive_logon_Smart_card_removal_behavior = 'Lock Workstation'
             # 2.3.8.1 (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled' 
@@ -355,7 +355,7 @@ configuration SecurityOption_Config
             Network_access_Restrict_clients_allowed_to_make_remote_calls_to_SAM = @(
                MSFT_RestrictedRemoteSamSecurityDescriptor
                {
-                  Permission = 'Allow' #<<Allow/Disable
+                  Permission = 'Allow' #<< Allow/Disable
                   Identity   = 'Administrators'#<< Insert any group name
                }
             )
