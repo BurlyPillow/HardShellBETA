@@ -169,7 +169,7 @@ New-NetFirewallRule -DisplayName "Blocking Port 37" -LocalPort 37 -Protocol UDP 
 
 New-NetFirewallRule -LocalPort 37 -Protocol TCP -Action Block
 
-
+}
 
 
 if ($PORTBlck -eq 80){
