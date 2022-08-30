@@ -18,12 +18,15 @@ Set-ExecutionPolicy Unrestricted
 ipconfig /flushdns
 
 
-echo "For most optional prompts, 1 = yes, and 2 = no"
+ "For most optional prompts, 1 = yes, and 2 = no"
+
+"."
 
 
 Disable-LocalUser -Name "Guest" #<<
 
-echo "Guest Disabled"
+
+"Guest Disabled"
 $Groupname = Read-host "Change the Admin and guest group names?"
 
 if($Groupname -eq 1){
@@ -32,18 +35,23 @@ Rename-LocalGroup -Name "Guests" -NewName "ScriptKiddies" #<<
 
 Rename-LocalGroup -Name "Adminstrators" -NewName "CyberTeam" #<<
 
-Echo "Opening netplwiz to verify the changes"
+"Opening netplwiz to verify the changes"
 
 netplwiz
 }
 
 if($Groupname -eq 2){
 
-echo "Skipping name change"
+"Skipping name change"
+
+
 }
 reg add “HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server” /v fDenyTSConnections /t REG_DWORD /d 1 /f
 
-echo "RPD Disabled"
+
+"."
+
+"RPD Disabled"
 
 
 $TLS = Read-Host "Install TLS?"
@@ -53,26 +61,26 @@ if($TLS -eq 1){
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 
 Install-Module PowerShellGet -RequiredVersion 2.2.4 -SkipPublisherCheck
 
-echo "TLS Installed"
+"TLS Installed"
 }
 
 
 
 if($TLS -eq 2){
 
-echo "TLS Skipped..."
+"TLS Skipped..."
 }
 
 
 
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True 
 
-echo "Firewall Enabled"
+"Firewall Enabled"
 {
 pause
 
 
-echo "Enabling logging for the firewall"
+"Enabling logging for the firewall"
 
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\EnableFirewall /v EnableFirewall /t REG_DWORD /d 1 /f
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultInboundAction /v DefaultInboundAction /t REG_DWORD /d 1 /f
@@ -101,7 +109,7 @@ reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicPro
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging /v LogDroppedPackets /t REG_DWORD /d 1 /f 
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging /v LogSuccessfulConnections /t REG_DWORD /d 1 /f 
 
-echo "Firewall logging enabled"
+ "Firewall logging enabled"
 }
 
 
@@ -111,7 +119,7 @@ Write-Host "HardFolder Already exists"
 }
 else
 {
-echo "Creating Hardshell Directory"
+ "Creating Hardshell Directory"
 New-Item -Path 'C:\temp\HardShell' -ItemType "Directory"
 }
 pause
@@ -119,11 +127,12 @@ pause
 $ClearContent = Read-host "Clear contents of Hardshell logs? 1 = auto / 2 = manual"
 if ($ClearContent -eq 1){
 Clear-Content C:\temp\HardShell\*.txt
-echo "Automatically wiped files"
+"Automatically wiped files"
 }
 
 if($ClearContent -eq 2){
-echo "Opening up confirmation panel...."
+"Opening up confirmation panel...."
+"."
 Clear-Content -Confirm C:\temp\HardShell\*.txt
 }
 
@@ -134,60 +143,60 @@ if ($notes -eq 1){
 
 [System.Environment]::OSVersion.Version | Out-File -FilePath 'C:\temp\Hard Shell\OS.txt'
 
-echo "OS Version Noted"
+ "OS Version Noted"
 
 
 
 Get-Process | Out-File -FilePath 'C:\temp\HardShell\Process.txt'
 
-echo "Processes Noted"
+ "Processes Noted"
 
 
 
 ipconfig /all | Out-File -FilePath 'C:\temp\HardShell\IPs.txt' 
 
-echo "IPs Noted"
+ "IPs Noted"
 
 
 
 getmac | Out-File -FilePath 'C:\temp\HardShell\MAC.txt'
 
-echo "MAC Noted"
+ "MAC Noted"
 
 
 get-computerinfo | Out-File -FilePath 'C:\temp\HardShell\PCINFO.txt'
 
-echo "PC Info Noted"
+ "PC Info Noted"
 
 
 
 
 Get-LocalUser | Select * | Out-File -FilePath 'C:\temp\HardShell\Users.txt'
 
-echo "Local User Noted"
+ "Local User Noted"
 
 
 
 chkdsk | Out-File 'C:\temp\HardShell\DSK.txt'
 
-echo "CHKDSK Noted"
+ "CHKDSK Noted"
 
 
 Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntiVirusProduct | Out-File -FilePath 'C:\temp\HardShell\AntiVirus.txt'
 
-echo Anti-Virus Noted
+ Anti-Virus Noted
 
 
 
 netstat | Out-File -FilePath 'C:\temp\HardShell\NETSTAT.txt'
 
-echo "NETSTAT Noted"
+ "NETSTAT Noted"
 
 }
  
  if ($notes -eq 2){
 
- echo "Skipping notes..."}
+ "Skipping notes..."}
 
 
 
@@ -198,11 +207,11 @@ if ($quicksc -eq 1){
 
 Start-MpScan -ScanType QuickScan
 
-echo "Scan Complete"
+ "Scan Complete"
 }
 
 if ($quicksc -eq 2){
-echo "Skipping quickscan..."
+ "Skipping quickscan..."
 }
 
 
@@ -219,7 +228,7 @@ install-module SecurityPolicyDsc
 
 if ($dsc -eq 2){
 
-echo "Cancelling DSC..."
+ "Cancelling DSC..."
 }
 
 
@@ -231,7 +240,7 @@ if ($psswdP -eq 1) {
 
 
 AccountPolicy AccountPolicies
-Echo "Enforcing Password Polices....."
+ "Enforcing Password Polices....."
 
 Name = 'PasswordPolicies'
 # 1.1.1 (L1) Ensure 'Enforce password history' is set to '24 or more password(s)'
@@ -269,7 +278,7 @@ configuration SecurityOption_Config
             # 2.3.1.2 (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'
             Accounts_Block_Microsoft_accounts = 'Users cant add or log on with Microsoft accounts' 
             # 2.3.1.3 (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled'
-            Accounts_Guest_account_status = 'Disabled'
+            Accounts_Guest_account_status = 'Disabled' #<<
             # 2.3.1.4 (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'
             Accounts_Limit_local_account_use_of_blank_passwords_to_console_logon_only = 'Enabled'
             # 2.3.1.5 (L1) Configure 'Accounts: Rename administrator account'
@@ -301,7 +310,7 @@ configuration SecurityOption_Config
             # 2.3.7.2 (L1) Ensure 'Interactive logon: Do not display last user name' is set to 'Enabled'
             Interactive_logon_Do_not_display_last_user_name = 'Enabled' #<< Enabled / Disabled
             # 2.3.7.3 (BL) Ensure 'Interactive logon: Machine account lockout threshold' is set to '10 or fewer invalid logon attempts, but not 0'
-            Interactive_logon_Machine_account_lockout_threshold = '10'            
+            Interactive_logon_Machine_account_lockout_threshold = '10'  #<< Insert value less than 10          
             # 2.3.7.4 (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'
             Interactive_logon_Machine_inactivity_limit = '900' 
             # 2.3.7.5 (L1) Configure 'Interactive logon: Message text for users attempting to log on' 
@@ -311,7 +320,7 @@ configuration SecurityOption_Config
             # 2.3.7.7 (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)'
             Interactive_logon_Number_of_previous_logons_to_cache_in_case_domain_controller_is_not_available = '4'
             # 2.3.7.8 (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'
-            Interactive_logon_Prompt_user_to_change_password_before_expiration = '14'
+            Interactive_logon_Prompt_user_to_change_password_before_expiration = '14' #<< set value 5 - 14
             # 2.3.7.9 (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher
             Interactive_logon_Smart_card_removal_behavior = 'Lock Workstation'
             # 2.3.8.1 (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled' 
@@ -355,7 +364,7 @@ configuration SecurityOption_Config
             Network_access_Restrict_clients_allowed_to_make_remote_calls_to_SAM = @(
                MSFT_RestrictedRemoteSamSecurityDescriptor
                {
-                  Permission = 'Allow' #<<Allow/Disable
+                  Permission = 'Allow' #<< Allow/Disable
                   Identity   = 'Administrators'#<< Insert any group name
                }
             )
@@ -410,9 +419,9 @@ configuration SecurityOption_Config
         }
     }
 
-echo "Local Security Policy updated"
+ "Local Security Policy updated"
 
-echo "Managing User Rights"
+ "Managing User Rights"
 
 Configuration UserRightsAssignment_Basic_Config
 {
@@ -656,20 +665,20 @@ Configuration UserRightsAssignment_Basic_Config
         }
      }
   }
-  echo "Managed User Rights"
+   "Managed User Rights"
 
 
 
  if ($psswdP -eq 2) {
 
 
- echo "Cancelling Passowrd Policies..."}
+  "Cancelling Passowrd Policies..."}
 
 
 
 
                                                 
-echo "searching for hacking tool..."
+ "searching for hacking tool..."
 $echooff
 #looks for common hacking tool names'
 
@@ -681,7 +690,7 @@ Get-ChildItem -Path 'C:\Program Files' -Filter "nmap" -Recurse -ErrorAction Sile
 Get-ChildItem -Path 'C:\Program Files' -Filter "Cain" -Recurse -ErrorAction SilentlyContinue -Force | Out-File -FilePath 'C:\temp\HardShell\UnautorizedSoftware.txt'
 Get-ChildItem -Path 'C:\Program Files' -Filter "nmap" -Recurse -ErrorAction SilentlyContinue -Force | Out-File -FilePath 'C:\temp\HardShell\UnautorizedSoftware.txt'
 
-echo "Check the output file for results!"
+ "Check the output file for results!"
 
 pause
 
@@ -690,23 +699,23 @@ pause
 $media = read-host "Scan for media?"
 
 if ($media -eq 1){
-echo "Finding unauthorized media files in C:\Users and/or C:\Documents and Settings..."
+"Finding unauthorized media files in C:\Users and/or C:\Documents and Settings..."
 Get-ChildItem -Path 'C:\Users' -include *.mp3,*.*ac3,*.aiff,*.flac,*.m4a,*.m4p,*.midi,*.mp2,*.m3u,*.ogg,*.vqf,*.wav -Recurse -ErrorAction SilentlyContinue -Force | Out-File -FilePath 'C:\temp\HardShell\UnautorizedSoftware.txt'
 Get-ChildItem -Path 'C:\Users' -include *.wma,*.mp4,*.avi,*.mpeg4 -Recurse -ErrorAction SilentlyContinue -Force | Out-File -FilePath 'C:\temp\HardShell\Unautorizedmedia.txt'
 Get-ChildItem -Path 'C:\Users' -include *.gif,*.png,*.bmp,*.jpg,.*jpeg -Recurse -ErrorAction SilentlyContinue -Force | Out-File -FilePath 'C:\temp\HardShell\Unautorizedmedia.txt'
-echo "Completed, check the output file"
+"Completed, check the output file"
 }
 
 if ($media -eq 2) {
-echo "Skipping media check"
+"Skipping media check"
 }
-echo "ENABLING AUTO-UPDATES"{
+"ENABLING AUTO-UPDATES"{
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /v AUOptions /t REG_DWORD /d 3 /f
 
-echo "Enabling firewall make sure group policy is allowing modifications to the firewall"
+"Enabling firewall make sure group policy is allowing modifications to the firewall"
 netsh advfirewall set allprofiles state on
-echo Firewall enabled
-echo Setting basic firewall rules..
+"Firewall enabled"
+"Setting basic firewall rules.."
 netsh advfirewall firewall set rule name="Remote Assistance DCOM-In" new enable=no 
 netsh advfirewall firewall set rule name="Remote Assistance PNRP-In" new enable=no 
 netsh advfirewall firewall set rule name="Remote Assistance RA Server TCP-In" new enable=no 
@@ -716,14 +725,14 @@ netsh advfirewall firewall set rule name="Remote Assistance TCP-In" new enable=n
 netsh advfirewall firewall set rule name="Telnet Server" new enable=no 
 netsh advfirewall firewall set rule name="netcat" new enable=no
 netsh advifrewall firewall set rule name="nmap" new enable=no
-echo Set basic firewall rules
+"Set basic firewall rules"
 }
-echo "Setting auditing success and failure for all categories"{
+"Setting auditing success and failure for all categories"{
 auditpol /set /category:* /success:enable
 auditpol /set /category:* /failure:enable
-echo Set auditing success and failure
+ Set auditing success and failure
 }
-echo "Managing registry keys..."{
+ "Managing registry keys..."{
 
 reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v AutoInstallMinorUpdates /t REG_DWORD /d 1 /f
 reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v NoAutoUpdate /t REG_DWORD /d 0 /f
@@ -800,12 +809,12 @@ reg ADD HKCU\SYSTEM\CurrentControlSet\Services\CDROM /v AutoRun /t REG_DWORD /d 
 
 }
 
-echo "Managed registry keys"
+ "Managed registry keys"
 
 
 $rdpChk = Read-host "Enable remote desktop"
 if ($rdpChk -eq 1){
-	echo Enabling remote desktop...
+	 Enabling remote desktop...
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 1 /f
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 1 /f
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 1 /f
@@ -813,19 +822,19 @@ if ($rdpChk -eq 1){
 	netsh advfirewall firewall set rule group="remote desktop" new enable=yes
 	echo Please select "Allow connections only from computers running Remote Desktop with Network Level Authentication (more secure)"
 	start SystemPropertiesRemote.exe /wait
-	echo Enabled remote desktop
+	"Enabled remote desktop"
 	goto:EOF
 }
 if ($rdpChk -eq 2){
-	echo Disabling remote desktop...
+	"Disabling remote desktop..."
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 0 /f
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 0 /f
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
 	netsh advfirewall firewall set rule group="remote desktop" new enable=no
-	echo Disabled remote desktop
+	 "Disabled remote desktop"
 }
-echo "Disabling Weak Services..."{
+ "Disabling Weak Services..."{
 dism /online /disable-feature /featurename:IIS-WebServerRole
 dism /online /disable-feature /featurename:IIS-WebServer
 dism /online /disable-feature /featurename:IIS-CommonHttpFeatures
@@ -932,13 +941,13 @@ services.msc
 }
 
 
-echo "turning on UAC..."{
+ "turning on UAC..."{
 reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 }
-echo "Checking for network shares..."
+ "Checking for network shares..."
 net share | Out-File -FilePath 'C:\temp\HardShell\Netshares.txt'
 
-echo "NOTE: ASR Rules only work for enterprise version of windows"
+ "NOTE: ASR Rules only work for enterprise version of windows"
 
 $manual = Read-Host "(1 for Auto, 2 for Manual ASR configuration)"
 if (2 -eq $manual)
@@ -1351,7 +1360,7 @@ $btnClear.Add_Click({
 
 $btnDocs = $Form.FindName("btnDocs")
 $btnDocs.Add_Click({
-    start ‘https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/attack-surface-reduction’
+    Start-Process ‘https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/attack-surface-reduction’
 })
 
 $btnInfo = $Form.FindName("btnInfo")
