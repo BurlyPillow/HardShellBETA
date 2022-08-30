@@ -141,7 +141,7 @@ if ($PORTBlck -eq 37){
 
 $37TCPUDP = Read-Host "TCP, UDP, or both?"
 
-}
+} #Port 37
 
 
 
@@ -172,13 +172,25 @@ New-NetFirewallRule -LocalPort 37 -Protocol TCP -Action Block
 }
 
 
+if ($PORTBlck -eq 53){
+
+New-NetFirewallRule -DisplayName "Blocking Port 53" -LocalPort 53 -Protocol UDP -Action Block
+
+} #Port 53
+
+if ($PORTBlck -eq 67){
+
+New-NetFirewallRule -DisplayName "Blocking Port 67" -LocalPort 67 -Protocol UDP -Action Block
+} #Port 67
+
+
+
 if ($PORTBlck -eq 80){
 
 New-NetFirewallRule -DisplayName "Blocking Outbound Port 80" -Direction Outbound -LocalPort 80 -Protocol UDP -Action Block
 
 
-}
-
+}#Port 80
 
 
 
